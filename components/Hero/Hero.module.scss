@@ -14,6 +14,92 @@
   width: 100%;
 }
 
+.glowOverlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  
+  /* Realistic uneven starry distribution */
+  background-image: 
+    radial-gradient(var(--text-primary) 1px, transparent 1px),
+    radial-gradient(var(--text-primary) 1.5px, transparent 1.5px),
+    radial-gradient(var(--text-primary) 0.8px, transparent 0.8px),
+    radial-gradient(var(--text-primary) 2px, transparent 2px);
+  background-size: 53px 53px, 89px 89px, 113px 113px, 157px 157px;
+  background-position: 0 0, 41px 23px, 19px 71px, 83px 17px;
+  opacity: 0.35;
+  
+  /* Fade out stars at the edges */
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 90%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 90%);
+}
+
+.glowLight {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--accent-color) 0%, transparent 60%);
+  opacity: 0.15;
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: pulseLight 8s infinite alternate;
+}
+
+.glowLight2 {
+  position: absolute;
+  bottom: -20%;
+  left: -10%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, #7c3aed 0%, transparent 60%);
+  opacity: 0.1;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: pulseLight 12s infinite alternate-reverse;
+}
+
+@keyframes pulseLight {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.1; }
+  100% { transform: scale(1.2) translate(-20px, 20px); opacity: 0.2; }
+}
+
+.starContainer {
+  position: absolute;
+  top: 15%;
+  right: 10%;
+  z-index: 2;
+  pointer-events: none;
+
+  @media (max-width: 768px) {
+    right: -15%;
+    top: 5%;
+  }
+}
+
+.darkStar {
+  width: 500px;
+  height: 500px;
+  fill: var(--bg-card);
+  stroke: var(--accent-color);
+  stroke-width: 2px;
+  filter: drop-shadow(0 0 30px var(--accent-color));
+  animation: spinStar 40s linear infinite;
+
+  @media (max-width: 768px) {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@keyframes spinStar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .heroContent {
   width: 100%;
   padding-top: 4rem;

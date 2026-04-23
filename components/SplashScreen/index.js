@@ -11,7 +11,7 @@ const SplashScreen = () => {
     // Hide the splash screen after the animation sequence
     const timer = setTimeout(() => {
       setIsVisible(false);
-    }, 2800); // Exits after 2.8 seconds
+    }, 2400); // Exits after texts slide out
 
     // Prevent scrolling while splash screen is visible
     document.body.style.overflow = 'hidden';
@@ -26,28 +26,46 @@ const SplashScreen = () => {
       {isVisible && (
         <motion.div
           className={styles.splashContainer}
-          initial={{ y: 0 }}
-          exit={{ y: '-100%' }}
-          transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-        >
-          <div className={styles.textWrapper}>
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className={styles.name}
-            >
-              gundpa
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-              className={styles.welcome}
-            >
-              welcoming u
-            </motion.p>
-          </div>
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+          >
+            <div className={styles.textWrapper}>
+              
+              {/* Blade Spark Effect */}
+              <motion.div 
+                className={styles.spark}
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: [0, 1, 3, 0], opacity: [0, 1, 1, 0] }}
+                transition={{ duration: 0.6, delay: 1.4, ease: "easeInOut" }}
+              />
+
+              <motion.h1 
+                initial={{ opacity: 0, y: 20, x: 0 }}
+                animate={{ opacity: 1, y: 0, x: "-100vw" }}
+                transition={{ 
+                  opacity: { duration: 0.5, delay: 0.2 },
+                  y: { duration: 0.5, delay: 0.2, ease: "easeOut" },
+                  x: { duration: 0.8, delay: 1.4, ease: "anticipate" }
+                }}
+                className={styles.name}
+              >
+                gundpa
+              </motion.h1>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 20, x: 0 }}
+                animate={{ opacity: 1, y: 0, x: "100vw" }}
+                transition={{ 
+                  opacity: { duration: 0.5, delay: 0.6 },
+                  y: { duration: 0.5, delay: 0.6, ease: "easeOut" },
+                  x: { duration: 0.8, delay: 1.4, ease: "anticipate" }
+                }}
+                className={styles.welcome}
+              >
+                welcoming u
+              </motion.p>
+            </div>
         </motion.div>
       )}
     </AnimatePresence>
