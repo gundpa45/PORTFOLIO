@@ -1,0 +1,231 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 1rem;
+  // background-color: #0b0c10; // Dark sleek background similar to screenshot
+  color: #fff;
+  border-radius: 12px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  z-index: 10;
+  
+  span {
+    color: #c084fc; // Purple accent
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+}
+
+.subheading {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #9ca3af;
+  margin-bottom: 3rem;
+  z-index: 10;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+}
+
+.visualArea {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px; /* Crucial for 3D effect */
+}
+
+/* Base Top Icons (Tech Grid) */
+.topIcons {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 10;
+}
+
+.iconRow {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.iconBox {
+  width: 48px;
+  height: 48px;
+  background: rgba(30, 30, 35, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: rgba(192, 132, 252, 0.5);
+    box-shadow: 0 0 15px rgba(192, 132, 252, 0.6);
+  }
+}
+
+/* Connecting Lines (SVG Layer) */
+.linesOverlay {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: 350px;
+  pointer-events: none;
+  z-index: 1;
+
+  path {
+    fill: none;
+    stroke: rgba(192, 132, 252, 0.3);
+    stroke-width: 1.5;
+    /* Optional glow for lines */
+    filter: drop-shadow(0 0 3px rgba(192, 132, 252, 0.5));
+  }
+  
+  @media (max-width: 768px) {
+    display: none; // Hide complex lines on mobile for simplicity
+  }
+}
+
+/* 3D Orbit Layout */
+.orbitScene {
+  position: absolute;
+  top: 250px; /* Offset to connect nicely with lines */
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+}
+
+.orbitRing {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 50%;
+  transform: rotateX(70deg); /* Tilt backwards to create ellipsis */
+  transform-style: preserve-3d;
+}
+
+.ring1 { width: 400px; height: 400px; }
+.ring2 { width: 550px; height: 550px; }
+.ring3 { width: 700px; height: 700px; }
+
+/* Central Glowing Orb */
+.centerOrb {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #a855f7 0%, #3b0764 70%, #000 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 60px rgba(168, 85, 247, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.2);
+  z-index: 5;
+  transform: rotateX(-70deg); /* Counter the parent tilt so it stands up straight */
+  
+  /* Central Logo Animation */
+  animation: floatOrb 4s ease-in-out infinite;
+
+  svg {
+    width: 60px;
+    height: 60px;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+    fill: none;
+    stroke: white;
+    stroke-width: 3;
+    stroke-linecap: round;
+  }
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: rotateX(-70deg) translateY(0px); }
+  50% { transform: rotateX(-70deg) translateY(-15px); }
+}
+
+/* Orbiting Planet Setup */
+.pivot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  /* e.g., animation: spinZ 15s linear infinite; assigned via JS */
+}
+
+.planet {
+  position: absolute;
+  /* translateY is injected via style based on ring radius */
+  transform-style: preserve-3d;
+}
+
+.stabilizer {
+  position: absolute;
+  top: -15px; /* center horizontally/vertically (approx 30px icon) */
+  left: -15px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 20px;
+  /* animation: spinZ-reverse 15s linear infinite; assigned via JS */
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+  
+  &:hover {
+    color: white;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+  }
+}
+
+@keyframes spinZ {
+  from { transform: rotateZ(0deg); }
+  to { transform: rotateZ(360deg); }
+}
+
+@keyframes spinZ_reverse {
+  from { transform: rotateZ(0deg) rotateX(-70deg); }
+  to { transform: rotateZ(-360deg) rotateX(-70deg); }
+}
+
+/* Glow effects under the whole scene */
+.glowBase {
+  position: absolute;
+  bottom: 0;
+  width: 600px;
+  height: 200px;
+  background: radial-gradient(ellipse at center, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
