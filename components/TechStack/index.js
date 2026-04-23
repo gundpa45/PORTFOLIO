@@ -92,10 +92,10 @@ const TechStack = () => {
           </div>
           <div className={styles.iconRow}>
             <TopIcon><SiPrisma color="#0C344B" /></TopIcon>
-            <TopIcon><SiNextdotjs color="#FFFFFF" /></TopIcon>
+            <TopIcon><SiNextdotjs /></TopIcon>
             <TopIcon><SiGatsby color="#663399" /></TopIcon>
             <TopIcon><SiTailwindcss color="#38BDF8" /></TopIcon>
-            <TopIcon><SiExpress color="#FFFFFF" /></TopIcon>
+            <TopIcon><SiExpress /></TopIcon>
             <TopIcon><SiMongodb color="#47A248" /></TopIcon>
           </div>
         </div>

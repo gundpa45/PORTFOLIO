@@ -14,11 +14,13 @@ export const metadata = {
 
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SplashScreen from '@/components/SplashScreen';
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={outfit.className}>
+        <SplashScreen />
         <Navbar />
         <main>{children}</main>
         <Footer />

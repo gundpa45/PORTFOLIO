@@ -82,18 +82,19 @@
 }
 
 .btnPrimary {
-  background: var(--gradient-text);
+  background: var(--accent-color);
   color: #fff;
   padding: 0.6rem 1.5rem;
   border-radius: 8px;
   border: none;
   font-weight: 600;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 14px 0 rgba(124, 58, 237, 0.39);
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+  box-shadow: 0 4px 14px 0 rgba(239, 68, 68, 0.39);
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
+    background: var(--accent-light);
     color: #fff;
   }
 }
