@@ -6,27 +6,11 @@ export default function Experience() {
   const experiences = [
     {
       id: 1,
-      role: 'Full Stack Developer',
-      company: 'Tech Company',
-      startDate: 'Jan 2023',
-      endDate: 'Present',
-      description: 'Developing and maintaining web applications using modern technologies. Leading frontend architecture and implementing scalable solutions.'
-    },
-    {
-      id: 2,
-      role: 'Frontend Developer',
-      company: 'Digital Agency',
-      startDate: 'Jun 2021',
-      endDate: 'Dec 2022',
-      description: 'Built responsive websites and web applications. Collaborated with designers and backend developers to deliver high-quality products.'
-    },
-    {
-      id: 3,
-      role: 'Junior Developer',
-      company: 'Startup Inc',
-      startDate: 'Jan 2020',
-      endDate: 'May 2021',
-      description: 'Assisted in developing web applications and learned modern development practices. Contributed to various client projects.'
+      role: 'Full Stack & Flutter App Developer',
+      company: 'Gamechange Energy (Geniusbos)',
+      startDate: 'Mar 19, 2026',
+      endDate: 'Jun 19, 2026',
+      description: 'Worked on software development projects as a Full Stack and Flutter App Developer. Collaborated with the engineering team to design and implement features, enhanced technical architecture, and gained valuable hands-on industry experience.'
     }
   ];
 
