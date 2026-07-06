@@ -3,7 +3,7 @@
   inset: 0;
   width: 100vw;
   height: 100vh;
-  background-color: var(--bg-main);
+  background-color: #050505;
   z-index: 99999;
   display: flex;
   justify-content: center;
@@ -11,49 +11,176 @@
   overflow: hidden;
 }
 
+/* ── Film grain overlay ── */
+.grainOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+  z-index: 1;
+}
+
+/* ── Editorial corner marks ── */
+.cornerMark {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  z-index: 2;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  &::before {
+    width: 24px;
+    height: 1px;
+  }
+
+  &::after {
+    width: 1px;
+    height: 24px;
+  }
+}
+
+.topLeft {
+  top: 28px;
+  left: 28px;
+  &::before { top: 0; left: 0; }
+  &::after { top: 0; left: 0; }
+}
+
+.topRight {
+  top: 28px;
+  right: 28px;
+  &::before { top: 0; right: 0; }
+  &::after { top: 0; right: 0; }
+}
+
+.bottomLeft {
+  bottom: 28px;
+  left: 28px;
+  &::before { bottom: 0; left: 0; }
+  &::after { bottom: 0; left: 0; }
+}
+
+.bottomRight {
+  bottom: 28px;
+  right: 28px;
+  &::before { bottom: 0; right: 0; }
+  &::after { bottom: 0; right: 0; }
+}
+
+/* ── Corner labels ── */
+.brandTag {
+  position: absolute;
+  top: 32px;
+  left: 60px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  z-index: 3;
+  font-family: var(--font-base);
+
+  @media (max-width: 768px) {
+    left: 20px;
+    top: 20px;
+    font-size: 0.55rem;
+    letter-spacing: 2px;
+  }
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 32px;
+  right: 60px;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  z-index: 3;
+  font-family: var(--font-base);
+
+  @media (max-width: 768px) {
+    right: 20px;
+    bottom: 20px;
+    font-size: 0.5rem;
+    letter-spacing: 2px;
+  }
+}
+
+/* ── Main text wrapper ── */
 .textWrapper {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
+  z-index: 5;
+}
 
-  .spark {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 250px;
-    height: 3px;
-    background: #fff;
-    box-shadow: 0 0 20px 5px var(--accent-color), 0 0 40px 10px #fff;
-    border-radius: 50%;
-    z-index: 10;
-    pointer-events: none;
-  }
-  
-  .name {
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: var(--accent-color);
-    margin: 0;
-    line-height: 1;
-    letter-spacing: -1px;
-    
-    @media (max-width: 768px) {
-      font-size: 2.5rem;
-    }
-  }
+/* ── Name row: letter-by-letter ── */
+.nameRow {
+  display: flex;
+  align-items: baseline;
+  overflow: hidden;
+  padding-bottom: 4px;
+}
 
-  .welcome {
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: var(--text-secondary);
-    margin: 0;
-    letter-spacing: 2px;
-    
-    @media (max-width: 768px) {
-      font-size: 1.2rem;
-    }
-  }
+.nameLetter {
+  display: inline-block;
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  font-family: var(--font-base);
+}
+
+.space {
+  width: 0.3em;
+}
+
+/* ── Accent line ── */
+.accentLine {
+  width: 50px;
+  height: 2px;
+  background: var(--accent-color, #ef4444);
+  transform-origin: center;
+  border-radius: 2px;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.4), 0 0 30px rgba(239, 68, 68, 0.15);
+}
+
+/* ── Role row: letter-by-letter ── */
+.roleRow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.roleLetter {
+  display: inline-block;
+  font-size: clamp(0.7rem, 1.5vw, 1rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.35em;
+  font-family: var(--font-base);
+  text-transform: uppercase;
+}
+
+/* ── Pulsing dot ── */
+.pulsingDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-color, #ef4444);
+  margin-top: 0.5rem;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.6), 0 0 20px rgba(239, 68, 68, 0.2);
 }
