@@ -1,82 +1,107 @@
 .experienceSection {
-  padding-top: 5rem;
+  border-top: 1px solid var(--border-color);
 }
 
-.timeline {
+.heading {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 3rem;
+  letter-spacing: -0.02em;
+}
+
+.experienceList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.experienceItem {
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--bg-main);
+  transition: var(--transition);
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: var(--bg-card);
+  }
+}
+
+.expHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.expRole {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.expCompany {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.expPeriod {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Bullet points ── */
+.expBullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.expBullet {
   position: relative;
-  max-width: 800px;
-  margin: 0 auto;
+  padding-left: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  font-size: 0.9rem;
 
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 20px;
-    height: 100%;
-    width: 2px;
-    background: var(--border-color);
+    left: 0;
+    top: 0.55em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--text-tertiary);
   }
+}
 
-  @media (max-width: 768px) {
-    &::before {
-      left: 15px;
-    }
-  }
+.expTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
 
-  .timelineItem {
-    position: relative;
-    margin-bottom: 3rem;
-    padding-left: 60px;
-
-    @media (max-width: 768px) {
-      padding-left: 50px;
-    }
-
-    .timelineDot {
-      position: absolute;
-      left: 15px;
-      top: 0;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--accent-color);
-      box-shadow: 0 0 0 4px var(--bg-main), 0 0 0 6px var(--border-color);
-    }
-    
-    .timelineContent {
-      padding: 2rem;
-
-      .timelineHeader {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 0.5rem;
-        flex-wrap: wrap;
-        gap: 1rem;
-
-        h3 {
-          font-size: 1.5rem;
-          color: var(--text-primary);
-        }
-
-        .timelineDate {
-          font-family: monospace;
-          color: var(--accent-light);
-          font-size: 0.9rem;
-        }
-      }
-
-      .timelineCompany {
-        font-size: 1.1rem;
-        color: var(--text-secondary);
-        font-weight: 500;
-        margin-bottom: 1rem;
-      }
-
-      .timelineDesc {
-        color: var(--text-secondary);
-        line-height: 1.6;
-      }
-    }
-  }
+.tag {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }

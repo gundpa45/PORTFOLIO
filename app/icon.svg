@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#fbe65d"/>
+  <g fill="#1a1a1a" transform="translate(4, 5)">
+    <!-- Monitor Base -->
+    <rect x="8" y="45" width="24" height="4" rx="2" />
+    <!-- Monitor Arm -->
+    <path d="M20 45 C32 45, 32 20, 26 10" fill="none" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+    <!-- Monitor Screen -->
+    <polygon points="30,5 18,40 24,40 36,5" fill="#1a1a1a"/>
+    <!-- Mouse -->
+    <path d="M40 49 C40 40, 52 40, 52 49 Z" fill="#1a1a1a"/>
+  </g>
+</svg>

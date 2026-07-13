@@ -1,0 +1,69 @@
+.pixelButton {
+  display: inline-flex;
+  align-items: center;
+  background: var(--text-primary);
+  color: var(--bg-main);
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  font-family: var(--font-base);
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  border: 1px solid var(--text-primary);
+  height: 48px; /* Fixed height for perfect alignment */
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.btnText {
+  padding: 0 1.25rem 0 1.5rem;
+  letter-spacing: 0.01em;
+}
+
+/* ── The Pixel Matrix Area ── */
+.pixelGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 4px);
+  grid-template-rows: repeat(7, 4px);
+  gap: 1px; /* The gap acts as the grid lines */
+  background: rgba(255, 255, 255, 0.08); /* Faint background for the whole block */
+  padding: 10px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.15); /* Separator line */
+
+  /* In light mode where button is black, these borders need to be adjusted */
+  [data-theme='light'] & {
+    background: rgba(255, 255, 255, 0.15);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+.pixel {
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15); /* Dim off-pixels */
+  transition: background 0.2s ease;
+}
+
+.pixel.lit {
+  background: var(--bg-main); /* Lit pixels use the background color for contrast */
+}
+
+/* ── Hover Animation for Lit Pixels ── */
+.pixelButton:hover .pixel.lit {
+  animation: dropAnim 0.4s ease-in-out forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes dropAnim {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(6px); opacity: 0; }
+  51% { transform: translateY(-6px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}

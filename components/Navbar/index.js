@@ -3,19 +3,24 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './Navbar.module.scss';
+import VrDubLogo from './VrDubLogo';
 
 export default function Navbar() {
   const [theme, setTheme] = useState('dark');
   const [mounted, setMounted] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    // Check local storage for theme
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme) {
       setTheme(storedTheme);
       document.documentElement.setAttribute('data-theme', storedTheme);
     }
+
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const toggleTheme = () => {
@@ -26,20 +31,19 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={styles.navbar}>
+    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.navContainer}`}>
-        <Link href="/" className={styles.logo}>
-          <span style={{ color: 'var(--text-primary-inverse)' }}>Port</span>
-          <span style={{ color: 'var(--accent-color)' }}>folio</span>.
+        <Link href="/" className={styles.logo} aria-label="Home">
+          <VrDubLogo className={styles.logoSvg} />
         </Link>
         <div className={styles.navLinks}>
           <Link href="#experience" className={styles.navLink}>Experience</Link>
           <Link href="#projects" className={styles.navLink}>Projects</Link>
-          <Link href="#contact" className={`${styles.navLink} ${styles.btnPrimary}`}>Contact Me</Link>
+          <Link href="#contact" className={styles.navLink}>Contact</Link>
           
           {mounted && (
             <button onClick={toggleTheme} className={styles.themeToggle} aria-label="Toggle Theme">
-              {theme === 'dark' ? '☀️' : '🌙'}
+              <span className={styles.themeIcon}>{theme === 'dark' ? '○' : '●'}</span>
             </button>
           )}
         </div>

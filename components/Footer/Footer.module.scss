@@ -1,11 +1,21 @@
 .footer {
-  padding: 2rem 0;
-  border-top: var(--glass-border);
-  margin-top: 4rem;
-  text-align: center;
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
 
 .footerText {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
+  color: var(--text-tertiary);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
 }

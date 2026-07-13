@@ -3,7 +3,7 @@
   inset: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #050505;
+  background-color: #0a0a0a;
   z-index: 99999;
   display: flex;
   justify-content: center;
@@ -16,7 +16,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-size: 128px 128px;
   z-index: 1;
@@ -25,52 +25,52 @@
 /* ── Editorial corner marks ── */
 .cornerMark {
   position: absolute;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   z-index: 2;
 
   &::before,
   &::after {
     content: '';
     position: absolute;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.08);
   }
 
   &::before {
-    width: 24px;
+    width: 20px;
     height: 1px;
   }
 
   &::after {
     width: 1px;
-    height: 24px;
+    height: 20px;
   }
 }
 
 .topLeft {
-  top: 28px;
-  left: 28px;
+  top: 24px;
+  left: 24px;
   &::before { top: 0; left: 0; }
   &::after { top: 0; left: 0; }
 }
 
 .topRight {
-  top: 28px;
-  right: 28px;
+  top: 24px;
+  right: 24px;
   &::before { top: 0; right: 0; }
   &::after { top: 0; right: 0; }
 }
 
 .bottomLeft {
-  bottom: 28px;
-  left: 28px;
+  bottom: 24px;
+  left: 24px;
   &::before { bottom: 0; left: 0; }
   &::after { bottom: 0; left: 0; }
 }
 
 .bottomRight {
-  bottom: 28px;
-  right: 28px;
+  bottom: 24px;
+  right: 24px;
   &::before { bottom: 0; right: 0; }
   &::after { bottom: 0; right: 0; }
 }
@@ -78,40 +78,40 @@
 /* ── Corner labels ── */
 .brandTag {
   position: absolute;
-  top: 32px;
-  left: 60px;
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 3px;
-  color: rgba(255, 255, 255, 0.4);
-  text-transform: uppercase;
-  z-index: 3;
-  font-family: var(--font-base);
-
-  @media (max-width: 768px) {
-    left: 20px;
-    top: 20px;
-    font-size: 0.55rem;
-    letter-spacing: 2px;
-  }
-}
-
-.scrollHint {
-  position: absolute;
-  bottom: 32px;
-  right: 60px;
+  top: 28px;
+  left: 52px;
   font-size: 0.6rem;
   font-weight: 400;
   letter-spacing: 3px;
   color: rgba(255, 255, 255, 0.3);
   text-transform: uppercase;
   z-index: 3;
-  font-family: var(--font-base);
+  font-family: 'Inter', -apple-system, sans-serif;
+
+  @media (max-width: 768px) {
+    left: 20px;
+    top: 20px;
+    font-size: 0.5rem;
+    letter-spacing: 2px;
+  }
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 28px;
+  right: 52px;
+  font-size: 0.55rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+  z-index: 3;
+  font-family: 'Inter', -apple-system, sans-serif;
 
   @media (max-width: 768px) {
     right: 20px;
     bottom: 20px;
-    font-size: 0.5rem;
+    font-size: 0.45rem;
     letter-spacing: 2px;
   }
 }
@@ -136,26 +136,24 @@
 
 .nameLetter {
   display: inline-block;
-  font-size: clamp(2.4rem, 7vw, 5.5rem);
-  font-weight: 800;
-  color: #ffffff;
+  font-size: clamp(2.2rem, 6.5vw, 5rem);
+  font-weight: 700;
+  color: #fafafa;
   line-height: 1;
-  letter-spacing: 0.06em;
-  font-family: var(--font-base);
+  letter-spacing: -0.02em;
+  font-family: 'Inter', -apple-system, sans-serif;
 }
 
 .space {
-  width: 0.3em;
+  width: 0.25em;
 }
 
 /* ── Accent line ── */
 .accentLine {
-  width: 50px;
-  height: 2px;
-  background: var(--accent-color, #ef4444);
+  width: 40px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
   transform-origin: center;
-  border-radius: 2px;
-  box-shadow: 0 0 12px rgba(239, 68, 68, 0.4), 0 0 30px rgba(239, 68, 68, 0.15);
 }
 
 /* ── Role row: letter-by-letter ── */
@@ -167,20 +165,19 @@
 
 .roleLetter {
   display: inline-block;
-  font-size: clamp(0.7rem, 1.5vw, 1rem);
+  font-size: clamp(0.65rem, 1.3vw, 0.85rem);
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.5);
-  letter-spacing: 0.35em;
-  font-family: var(--font-base);
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.3em;
+  font-family: 'Inter', -apple-system, sans-serif;
   text-transform: uppercase;
 }
 
 /* ── Pulsing dot ── */
 .pulsingDot {
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
-  background: var(--accent-color, #ef4444);
-  margin-top: 0.5rem;
-  box-shadow: 0 0 8px rgba(239, 68, 68, 0.6), 0 0 20px rgba(239, 68, 68, 0.2);
+  background: rgba(255, 255, 255, 0.3);
+  margin-top: 0.75rem;
 }

@@ -1,11 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import styles from './Contact.module.scss';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  const [status, setStatus] = useState('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e) => {
@@ -51,67 +52,113 @@ export default function Contact() {
 
   return (
     <section className={`section ${styles.contactSection}`} id="contact">
-      <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '3rem', alignItems: 'center' }}>
-        
-        <div className="contact-info">
-          <h2 className="title" style={{ fontSize: '4rem', fontWeight: 800, marginBottom: '1.5rem', lineHeight: 1.1 }}>
-            GET IN <span style={{ color: 'var(--accent-color)' }}>TOUCH</span>
-          </h2>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', fontSize: '1.2rem', maxWidth: '400px' }}>
-            Have a project in mind? Let's build something amazing together. My inbox is always open.
-          </p>
-          <a href="mailto:vishnurathod0105@gmail.com" style={{ fontSize: '1.2rem', fontWeight: 600, borderBottom: '2px solid var(--accent-color)', paddingBottom: '5px' }}>
-            vishnurathod0105@gmail.com
-          </a>
-        </div>
+      <div className="container">
+        <div className={styles.contactLayout}>
 
-        <form className={`${styles.contactForm} glass-panel`} onSubmit={handleSubmit}>
-          <div className={styles.inputGroup}>
-            <input 
-              type="text" 
-              name="name" 
-              placeholder="Your Name" 
-              required 
-              value={formData.name}
-              onChange={handleChange}
-              className={styles.formInput}
-            />
+          <div className={styles.contactInfo}>
+            <motion.p 
+              className="section-title"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+            >
+              Contact
+            </motion.p>
+
+            <motion.h2 
+              className={styles.heading}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
+              Let's work<br />together.
+            </motion.h2>
+
+            <motion.p 
+              className={styles.contactDesc}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              Have a project in mind or just want to say hello?<br />
+              My inbox is always open.
+            </motion.p>
+
+            <motion.a 
+              href="mailto:vishnurathod0105@gmail.com" 
+              className={styles.emailLink}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              vishnurathod0105@gmail.com
+            </motion.a>
           </div>
-          <div className={styles.inputGroup}>
-            <input 
-              type="email" 
-              name="email" 
-              placeholder="Your Email" 
-              required 
-              value={formData.email}
-              onChange={handleChange}
-              className={styles.formInput}
-            />
-          </div>
-          <div className={styles.inputGroup}>
-            <textarea 
-              name="message" 
-              placeholder="Your Message..." 
-              required 
-              rows="5"
-              value={formData.message}
-              onChange={handleChange}
-              className={styles.formInput}
-            ></textarea>
-          </div>
-          
-          <button 
-            type="submit" 
-            className="btn-primary" 
-            style={{ width: '100%', marginTop: '1rem', border: 'none', cursor: 'pointer' }}
-            disabled={status === 'loading'}
+
+          <motion.form 
+            className={styles.contactForm} 
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
           >
-            {status === 'loading' ? 'Sending...' : 'Send Message'}
-          </button>
-          
-          {status === 'success' && <p className={`${styles.status} ${styles.success}`} style={{ marginTop: '1rem' }}>Message sent successfully!</p>}
-          {status === 'error' && <p className={`${styles.status} ${styles.error}`} style={{ marginTop: '1rem' }}>{errorMessage}</p>}
-        </form>
+            <div className={styles.inputGroup}>
+              <label className={styles.inputLabel}>Name</label>
+              <input
+                type="text"
+                name="name"
+                required
+                value={formData.name}
+                onChange={handleChange}
+                className={styles.formInput}
+                placeholder="John Doe"
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <label className={styles.inputLabel}>Email</label>
+              <input
+                type="email"
+                name="email"
+                required
+                value={formData.email}
+                onChange={handleChange}
+                className={styles.formInput}
+                placeholder="john@example.com"
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <label className={styles.inputLabel}>Message</label>
+              <textarea
+                name="message"
+                required
+                rows="5"
+                value={formData.message}
+                onChange={handleChange}
+                className={styles.formInput}
+                placeholder="Tell me about your project..."
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              className={styles.submitBtn}
+              disabled={status === 'loading'}
+            >
+              {status === 'loading' ? 'Sending...' : 'Send message'}
+            </button>
+
+            {status === 'success' && (
+              <p className={`${styles.statusMsg} ${styles.success}`}>Message sent successfully.</p>
+            )}
+            {status === 'error' && (
+              <p className={`${styles.statusMsg} ${styles.error}`}>{errorMessage}</p>
+            )}
+          </motion.form>
+        </div>
       </div>
     </section>
   );
